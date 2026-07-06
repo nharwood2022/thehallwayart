@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hallway Art — Graphite Portraiture by Alicia Hall</title>
+<meta name="description" content="Fine graphite pencil portraits and nature drawings by commission. Capturing life's moments with graphite pencil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#faf8f3;
+    --paper-deep:#f1ede4;
+    --ink:#1c1b19;
+    --graphite:#55524c;
+    --line:#d9d3c6;
+    --accent:#8a7a5c;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.4rem 4vw;
+    background:linear-gradient(to bottom, rgba(250,248,243,.96), rgba(250,248,243,.82) 70%, transparent);
+    backdrop-filter:blur(6px);
+  }
+  .wordmark{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.5rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;
+  }
+  .wordmark span{color:var(--accent)}
+  nav ul{display:flex;gap:2.6rem;list-style:none}
+  nav ul a{
+    font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--graphite);
+    padding-bottom:4px;border-bottom:1px solid transparent;transition:all .25s;
+  }
+  nav ul a:hover{color:var(--ink);border-bottom-color:var(--accent)}
+  .nav-cta{border:1px solid var(--ink);padding:.55rem 1.3rem;border-radius:99px;color:var(--ink)!important;transition:all .25s}
+  .nav-cta:hover{background:var(--ink);color:var(--paper)!important;border-bottom:1px solid var(--ink)!important}
+
+  /* ---------- Hero ---------- */
+  header{
+    min-height:100vh;
+    display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;
+  }
+  .hero-copy{
+    display:flex;flex-direction:column;justify-content:center;
+    padding:9rem 6vw 4rem 6vw;
+  }
+  .eyebrow{
+    font-size:.75rem;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);margin-bottom:1.6rem;
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(2.6rem, 5vw, 4.6rem);
+    line-height:1.08;letter-spacing:.01em;
+    margin-bottom:1.8rem;
+  }
+  h1 em{font-style:italic;color:var(--graphite)}
+  .hero-copy p{max-width:26rem;color:var(--graphite);margin-bottom:2.6rem}
+  .btn-row{display:flex;gap:1.1rem;flex-wrap:wrap}
+  .btn{
+    display:inline-block;padding:.9rem 2rem;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;
+    border:1px solid var(--ink);border-radius:99px;transition:all .25s;
+  }
+  .btn.solid{background:var(--ink);color:var(--paper)}
+  .btn.solid:hover{background:transparent;color:var(--ink)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper)}
+  .hero-art{
+    position:relative;overflow:hidden;background:var(--paper-deep);
+  }
+  .hero-art img{
+    width:100%;height:100%;object-fit:cover;object-position:center 20%;
+  }
+  .hero-caption{
+    position:absolute;bottom:1.4rem;right:1.6rem;
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;
+    background:rgba(28,27,25,.55);padding:.45rem 1rem;border-radius:99px;backdrop-filter:blur(4px);
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section{padding:7rem 6vw}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+  h2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(2rem,3.6vw,3.1rem);line-height:1.1;
+  }
+  .section-head p{color:var(--graphite);max-width:24rem;font-size:.95rem}
+  .rule{width:100%;height:1px;background:var(--line)}
+
+  /* ---------- About ---------- */
+  .about{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:5rem;align-items:center;
+    background:var(--paper-deep);
+  }
+  .about-img{position:relative}
+  .about-img img{width:100%;height:auto;box-shadow:24px 24px 0 0 var(--paper), 24px 24px 0 1px var(--line)}
+  .about h2{margin-bottom:1.6rem}
+  .about p{color:var(--graphite);margin-bottom:1.2rem;max-width:34rem}
+  .signature{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--ink);margin-top:1.6rem;
+  }
+
+  /* ---------- Galleries ---------- */
+  .masonry{
+    columns:3;column-gap:1.6rem;
+  }
+  .piece{
+    break-inside:avoid;margin-bottom:1.6rem;position:relative;overflow:hidden;cursor:pointer;
+  }
+  .piece a{display:block}
+  .piece img{width:100%;transition:transform .6s ease}
+  .piece:hover img{transform:scale(1.03)}
+  .piece figcaption{
+    position:absolute;inset:auto 0 0 0;
+    padding:2.2rem 1.2rem .9rem;
+    background:linear-gradient(transparent, rgba(28,27,25,.72));
+    color:#fff;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
+    opacity:0;transform:translateY(8px);transition:all .35s ease;
+  }
+  .piece:hover figcaption{opacity:1;transform:none}
+
+  /* ---------- Quote ---------- */
+  .quote{
+    text-align:center;padding:8rem 6vw;
+  }
+  .quote blockquote{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+    font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.35;max-width:46rem;margin:0 auto 1.6rem;
+  }
+  .quote cite{font-style:normal;font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+
+  /* ---------- Commission ---------- */
+  .commission{
+    background:var(--ink);color:var(--paper);
+    display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  }
+  .commission h2{color:var(--paper)}
+  .commission p{color:#b9b4a9;max-width:30rem;margin:1.4rem 0 2.4rem}
+  .commission .btn{border-color:var(--paper);color:var(--paper)}
+  .commission .btn:hover{background:var(--paper);color:var(--ink)}
+  .steps{list-style:none;display:grid;gap:1.8rem}
+  .steps li{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:baseline}
+  .steps .num{
+    font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--accent);font-style:italic;
+  }
+  .steps b{display:block;font-weight:500;letter-spacing:.08em;margin-bottom:.2rem}
+  .steps span{color:#b9b4a9;font-size:.92rem}
+
+  /* ---------- Commission form ---------- */
+  .form{display:grid;gap:1.5rem;background:rgba(250,248,243,.04);border:1px solid #3a3733;padding:2.4rem}
+  .form label{font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:#b9b4a9;display:block;margin-bottom:.5rem}
+  .form input,.form select,.form textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid #4a463f;
+    color:var(--paper);font-family:'Jost',sans-serif;font-weight:300;font-size:1rem;
+    padding:.5rem 0;outline:none;transition:border-color .25s;border-radius:0;
+  }
+  .form input:focus,.form select:focus,.form textarea:focus{border-bottom-color:var(--accent)}
+  .form select{cursor:pointer}
+  .form select option{color:var(--ink);background:var(--paper)}
+  .form textarea{resize:vertical;min-height:110px}
+  .form button.btn{
+    justify-self:start;cursor:pointer;background:transparent;
+    font-family:'Jost',sans-serif;border-color:var(--paper);color:var(--paper);
+  }
+  .form button.btn:hover{background:var(--paper);color:var(--ink)}
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:4rem 6vw;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap;
+  }
+  footer .wordmark{font-size:1.1rem}
+  .contact-row{display:flex;gap:2.4rem;flex-wrap:wrap;font-size:.85rem;color:var(--graphite)}
+  .contact-row a:hover{color:var(--ink)}
+
+  @media (max-width:900px){
+    header{grid-template-columns:1fr}
+    .hero-art{min-height:56vh;order:-1}
+    .hero-copy{padding-top:3rem}
+    nav ul li:not(:last-child){display:none}
+    .about{grid-template-columns:1fr;gap:3rem}
+    .masonry{columns:2}
+    .commission{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){ .masonry{columns:1} }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="wordmark" href="#top">The Hallway <span>Art</span></a>
+  <ul>
+    <li><a href="#portraits">Portraits</a></li>
+    <li><a href="#nature">Nature</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a class="nav-cta" href="#commission">Request a Commission</a></li>
+  </ul>
+</nav>
+
+<header id="top">
+  <div class="hero-copy">
+    <div class="eyebrow">Graphite Pencil Portraiture · Dallas, TX</div>
+    <h1>Capturing life's <em>fleeting moments</em>, one pencil stroke at a time.</h1>
+    <p>Fine graphite portraits and nature studies by commission — evocative, intimate, and true to the people, animals and moments you love.</p>
+    <div class="btn-row">
+      <a class="btn solid" href="#commission">Commission a Portrait</a>
+      <a class="btn ghost" href="#portraits">View the Gallery</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <img src="images/girl-flower-crown-portrait.jpeg" alt="Graphite portrait of a young girl wearing a flower crown">
+    <div class="hero-caption">Graphite on paper</div>
+  </div>
+</header>
+
+<div class="rule"></div>
+
+<section id="portraits">
+  <div class="section-head">
+    <h2>Portraits</h2>
+    <p>Children, weddings, families and faithful companions — each piece drawn to honor a likeness and the feeling behind it.</p>
+  </div>
+  <div class="masonry">
+    <figure class="piece"><a href="images/bride-portrait-with-roses.jpeg" target="_blank" rel="noopener"><img src="images/bride-portrait-with-roses.jpeg" alt="Bride surrounded by roses"></a><figcaption>Bride with Roses</figcaption></figure>
+    <figure class="piece"><a href="images/girl-cupping-face-portrait.jpeg" target="_blank" rel="noopener"><img src="images/girl-cupping-face-portrait.jpeg" alt="Girl resting her face in her hands"></a><figcaption>Daydreamer</figcaption></figure>
+    <figure class="piece"><a href="images/boy-with-fishing-rod-portrait.jpeg" target="_blank" rel="noopener"><img src="images/boy-with-fishing-rod-portrait.jpeg" alt="Boy fishing"></a><figcaption>Gone Fishing</figcaption></figure>
+    <figure class="piece"><a href="images/girl-in-straw-hat-portrait.jpeg" target="_blank" rel="noopener"><img src="images/girl-in-straw-hat-portrait.jpeg" alt="Girl in a conical straw hat"></a><figcaption>The Straw Hat</figcaption></figure>
+    <figure class="piece"><a href="images/sleeping-baby-portrait.jpg" target="_blank" rel="noopener"><img src="images/sleeping-baby-portrait.jpg" alt="Sleeping baby with curly hair"></a><figcaption>Sound Asleep</figcaption></figure>
+    <figure class="piece"><a href="images/laughing-woman-magnolia-background.jpg" target="_blank" rel="noopener"><img src="images/laughing-woman-magnolia-background.jpg" alt="Laughing woman on magnolia background"></a><figcaption>Magnolia Laughter</figcaption></figure>
+    <figure class="piece"><a href="images/girl-reaching-for-magnolia.jpeg" target="_blank" rel="noopener"><img src="images/girl-reaching-for-magnolia.jpeg" alt="Girl reaching up to a magnolia branch"></a><figcaption>Reaching for Spring</figcaption></figure>
+    <figure class="piece"><a href="images/great-dane-dog-portrait.jpg" target="_blank" rel="noopener"><img src="images/great-dane-dog-portrait.jpg" alt="Great Dane portrait"></a><figcaption>Loyal Friend</figcaption></figure>
+    <figure class="piece"><a href="images/fairy-costume-girl-portrait.jpeg" target="_blank" rel="noopener"><img src="images/fairy-costume-girl-portrait.jpeg" alt="Girl in fairy costume"></a><figcaption>Little Fairy</figcaption></figure>
+    <figure class="piece"><a href="images/girl-with-stuffed-animal-portrait.jpeg" target="_blank" rel="noopener"><img src="images/girl-with-stuffed-animal-portrait.jpeg" alt="Girl holding a stuffed animal"></a><figcaption>Bedtime Bear</figcaption></figure>
+    <figure class="piece"><a href="images/ballerina-arms-raised-portrait.jpg" target="_blank" rel="noopener"><img src="images/ballerina-arms-raised-portrait.jpg" alt="Young ballerina with arms raised"></a><figcaption>First Position</figcaption></figure>
+    <figure class="piece"><a href="images/smiling-curly-hair-toddler.jpg" target="_blank" rel="noopener"><img src="images/smiling-curly-hair-toddler.jpg" alt="Smiling toddler with curly hair"></a><figcaption>That Smile</figcaption></figure>
+    <figure class="piece"><a href="images/mother-daughter-kiss.jpg" target="_blank" rel="noopener"><img src="images/mother-daughter-kiss.jpg" alt="Mother and daughter sharing a kiss"></a><figcaption>A Mother's Kiss</figcaption></figure>
+    <figure class="piece"><a href="images/girls-overlooking-canyon.jpg" target="_blank" rel="noopener"><img src="images/girls-overlooking-canyon.jpg" alt="Two girls overlooking a canyon vista"></a><figcaption>The Overlook</figcaption></figure>
+    <figure class="piece"><a href="images/girl-flower-crown-portrait.jpeg" target="_blank" rel="noopener"><img src="images/girl-flower-crown-portrait.jpeg" alt="Girl wearing a flower crown"></a><figcaption>Flower Crown</figcaption></figure>
+    <figure class="piece"><a href="images/boy-chin-in-hands-portrait.jpeg" target="_blank" rel="noopener"><img src="images/boy-chin-in-hands-portrait.jpeg" alt="Boy resting his chin in his hand"></a><figcaption>Quiet Thoughts</figcaption></figure>
+    <figure class="piece"><a href="images/boy-in-beanie-portrait.jpg" target="_blank" rel="noopener"><img src="images/boy-in-beanie-portrait.jpg" alt="Toddler in a knit beanie"></a><figcaption>The Beanie</figcaption></figure>
+    <figure class="piece"><a href="images/boy-resting-chin-portrait.jpg" target="_blank" rel="noopener"><img src="images/boy-resting-chin-portrait.jpg" alt="Boy in a Batman shirt resting his chin on his hand"></a><figcaption>Little Hero</figcaption></figure>
+    <figure class="piece"><a href="images/curly-hair-girl-with-rose.jpeg" target="_blank" rel="noopener"><img src="images/curly-hair-girl-with-rose.jpeg" alt="Girl with curled hair and a rose"></a><figcaption>The Rose</figcaption></figure>
+    <figure class="piece"><a href="images/girl-braided-updo-portrait.jpg" target="_blank" rel="noopener"><img src="images/girl-braided-updo-portrait.jpg" alt="Girl with a braided updo"></a><figcaption>The Recital</figcaption></figure>
+    <figure class="piece"><a href="images/girl-hand-on-cheek-portrait.jpeg" target="_blank" rel="noopener"><img src="images/girl-hand-on-cheek-portrait.jpeg" alt="Girl with her hand on her cheek"></a><figcaption>Wide Eyes</figcaption></figure>
+    <figure class="piece"><a href="images/renaissance-costume-girl-portrait.jpg" target="_blank" rel="noopener"><img src="images/renaissance-costume-girl-portrait.jpg" alt="Girl in a renaissance costume"></a><figcaption>Fair Maiden</figcaption></figure>
+    <figure class="piece"><a href="images/woman-in-floral-hat-portrait.jpeg" target="_blank" rel="noopener"><img src="images/woman-in-floral-hat-portrait.jpeg" alt="Woman in a wide-brimmed floral hat"></a><figcaption>Derby Day</figcaption></figure>
+    <figure class="piece"><a href="images/woman-in-leopard-blanket-portrait.jpeg" target="_blank" rel="noopener"><img src="images/woman-in-leopard-blanket-portrait.jpeg" alt="Woman in leopard print with her morning coffee"></a><figcaption>Sunday Morning</figcaption></figure>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-img">
+    <img src="images/alicia-hall-headshot.jpg" alt="Portrait photograph of artist Alicia Hall">
+  </div>
+  <div>
+    <div class="eyebrow">About the Artist</div>
+    <h2>Alicia Hall</h2>
+    <p>I come from a multi-generational family of artists, which has heavily influenced my work. Growing up in New Orleans — a city overflowing with unique self-expression and creativity — pursuing my own artistic outlet became an integral part of my life from an early age.</p>
+    <p>Although many mediums have interested me, my current focus is graphite pencil portraiture. Most would describe my style as semi photo-realism, but my goal for each piece exceeds just copying a photo: my intent is to transform an image into something evocative and intimate with my own interpretation, while honoring the subject's likeness.</p>
+    <p>Whether drawing the joy of a couple on their wedding day, the warmth of an old loyal dog that passed, or the curiosity of a child — my work initiates a compelling connection back to those feelings, back to those moments.</p>
+    <div class="signature">— Alicia</div>
+  </div>
+</section>
+
+<section id="nature">
+  <div class="section-head">
+    <h2>Nature, Botanicals &amp; Wildlife</h2>
+    <p>Studies in light and texture — moths, blooms and wild things rendered in graphite.</p>
+  </div>
+  <div class="masonry">
+    <figure class="piece"><a href="images/hydrangea-flower-cluster.jpg" target="_blank" rel="noopener"><img src="images/hydrangea-flower-cluster.jpg" alt="Hydrangea on black background"></a><figcaption>Hydrangea</figcaption></figure>
+    <figure class="piece"><a href="images/butterfly-wings-spread.png" target="_blank" rel="noopener"><img src="images/butterfly-wings-spread.png" alt="Butterfly with wings spread"></a><figcaption>Peacock Butterfly</figcaption></figure>
+    <figure class="piece"><a href="images/elk-with-antlers-portrait.jpg" target="_blank" rel="noopener"><img src="images/elk-with-antlers-portrait.jpg" alt="Elk in profile on black background"></a><figcaption>The Stag</figcaption></figure>
+    <figure class="piece"><a href="images/rose-bouquet-closeup.jpg" target="_blank" rel="noopener"><img src="images/rose-bouquet-closeup.jpg" alt="Dense bouquet of roses"></a><figcaption>Gathered Roses</figcaption></figure>
+    <figure class="piece"><a href="images/striped-moth-wings-spread.png" target="_blank" rel="noopener"><img src="images/striped-moth-wings-spread.png" alt="Striped sphinx moth"></a><figcaption>Sphinx Moth</figcaption></figure>
+    <figure class="piece"><a href="images/goose-preening-feathers.png" target="_blank" rel="noopener"><img src="images/goose-preening-feathers.png" alt="Goose preening its feathers"></a><figcaption>Preening Goose</figcaption></figure>
+    <figure class="piece"><a href="images/magnolia-flower-closeup.jpg" target="_blank" rel="noopener"><img src="images/magnolia-flower-closeup.jpg" alt="Magnolia bloom on black"></a><figcaption>Magnolia</figcaption></figure>
+    <figure class="piece"><a href="images/spotted-moth-wings-spread.jpg" target="_blank" rel="noopener"><img src="images/spotted-moth-wings-spread.jpg" alt="Leopard moth on black background"></a><figcaption>Leopard Moth</figcaption></figure>
+    <figure class="piece"><a href="images/circular-sunflower-drawing.jpeg" target="_blank" rel="noopener"><img src="images/circular-sunflower-drawing.jpeg" alt="Sunflower drawn on a circular panel"></a><figcaption>Sunflower</figcaption></figure>
+  </div>
+</section>
+
+<div class="quote">
+  <blockquote>"The object of art is to make eternal the desperately fleeting moment."</blockquote>
+  <cite>— Tennessee Williams</cite>
+</div>
+
+<section class="commission" id="commission">
+  <div>
+    <div class="eyebrow">Commissions</div>
+    <h2>Turn a photograph into an heirloom.</h2>
+    <p>Every commission begins with a conversation. Share your moment below — we'll prepare a proposal and walk you through every step of the process, from choosing the right reference photo to the day it's framed on your wall.</p>
+    <ol class="steps">
+      <li><span class="num">01</span><div><b>Share your moment</b><span>Send the photo — a wedding, a child, a beloved pet — and tell me its story.</span></div></li>
+      <li><span class="num">02</span><div><b>Receive a proposal</b><span>Size, timeline and pricing, tailored to your piece.</span></div></li>
+      <li><span class="num">03</span><div><b>Watch it come to life</b><span>Progress updates from first sketch to final graphite detail.</span></div></li>
+      <li><span class="num">04</span><div><b>Keep it forever</b><span>Your finished original, ready to frame and pass down.</span></div></li>
+    </ol>
+  </div>
+  <form class="form" action="https://formsubmit.co/thehallwayart@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="New commission request — thehallwayart.com">
+    <input type="text" name="_honey" style="display:none">
+    <div>
+      <label for="f-name">Your Name</label>
+      <input id="f-name" type="text" name="name" required autocomplete="name">
+    </div>
+    <div>
+      <label for="f-email">Email</label>
+      <input id="f-email" type="email" name="email" required autocomplete="email">
+    </div>
+    <div>
+      <label for="f-phone">Phone <span style="opacity:.55">(optional)</span></label>
+      <input id="f-phone" type="tel" name="phone" autocomplete="tel">
+    </div>
+    <div>
+      <label for="f-type">Type of Commission</label>
+      <select id="f-type" name="commission_type" required>
+        <option value="" selected disabled>Choose one…</option>
+        <option>Child / Family Portrait</option>
+        <option>Wedding Portrait</option>
+        <option>Pet Portrait</option>
+        <option>Nature / Botanical</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-story">Tell me about your moment</label>
+      <textarea id="f-story" name="message" placeholder="The photo, the person, the story behind it…" required></textarea>
+    </div>
+    <button class="btn" type="submit">Send Request</button>
+  </form>
+</section>
+
+<footer>
+  <div class="wordmark">The Hallway <span>Art</span></div>
+  <div class="contact-row">
+    <a href="tel:6153648216">615 · 364 · 8216</a>
+    <a href="mailto:thehallwayart@gmail.com">thehallwayart@gmail.com</a>
+    <a href="https://instagram.com/the_hallway_art" target="_blank" rel="noopener">@the_hallway_art</a>
+  </div>
+</footer>
+
+</body>
+</html>
