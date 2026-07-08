@@ -17,4 +17,18 @@
   <FilesMatch "\.(webp|jpe?g|png|ico)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+
+  # --- Security headers ---
+  # Refuse to be embedded in frames on other sites (clickjacking)
+  Header always set X-Frame-Options "DENY"
+  # Browsers must respect declared content types
+  Header always set X-Content-Type-Options "nosniff"
+  # Don't leak full URLs to other sites
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # This site never needs these browser capabilities
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  # Require HTTPS for 180 days once seen over HTTPS
+  Header always set Strict-Transport-Security "max-age=15552000"
+  # Only run/load resources from ourselves + Google Fonts; forms may only post to us or FormSubmit
+  Header always set Content-Security-Policy "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; form-action 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
 </IfModule>
