@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>The Hallway Art</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    min-height:100vh;background:#161514;
+    display:flex;align-items:center;justify-content:center;
+    padding:2.5vmin;
+  }
+  img{
+    max-width:100%;max-height:95vh;display:block;
+    box-shadow:0 30px 80px rgba(0,0,0,.6);
+    -webkit-user-drag:none;user-select:none;
+    -webkit-touch-callout:none;      /* no long-press save sheet on iOS */
+    pointer-events:none;             /* right-click lands on the overlay below, not the image */
+  }
+  .err{color:#9d968a;font-family:sans-serif;letter-spacing:.1em}
+</style>
+</head>
+<body oncontextmenu="return false">
+<script>
+  const name = new URLSearchParams(location.search).get('img') || '';
+  if (/^[\w.+\- ()]+\.(jpe?g|png|webp)$/i.test(name)) {
+    const img = new Image();
+    img.src = 'images/' + name;
+    img.alt = '';
+    document.title = 'The Hallway Art — ' + name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+    document.body.appendChild(img);
+  } else {
+    document.body.insertAdjacentHTML('beforeend', '<p class="err">Artwork not found.</p>');
+  }
+</script>
+</body>
+</html>
